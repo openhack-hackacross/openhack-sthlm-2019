@@ -12,5 +12,3 @@ module.exports = function (documentDescription) {
         }
         return false;
     }
-
-
