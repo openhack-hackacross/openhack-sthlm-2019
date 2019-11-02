@@ -8,7 +8,7 @@ const filter = require('./filterDocument.js');
 let flaggedItems = []
 let accidentItems = []
 let fireItems = []
-//const PORT = process.env.PORT
+const PORT = process.env.PORT
 
 
 app.get('/', (req, res) => res.render('index.ejs'))
