@@ -1,4 +1,4 @@
-const filters = [["brinner", "fire"], ["brand", "fire"], ["skogsbrand", "fire"], ["eld", "fire"], ["eldssvåda", "fire"], ["olycka", "accident"]];
+const filters = [["brinner", "fire"], ["brand", "fire"], ["skogsbrand", "fire"], ["eld", "fire"], ["eldssvåda", "fire"], ["olycka", "accident"], ["olyckor", "accident"], ["trafikolycka", "accident"], ["krock", "accident"]];
 const natural = require("natural");
 const tokenizer = new natural.AggressiveTokenizerSv();
 
