@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/openhack-hackacross/openhack-sthlm-2019#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "natural": "^0.6.3",
+    "node-fetch": "^2.6.0",
+    "rss-to-json": "^1.0.5",
+    "xml-js": "^1.6.11"
   }
 }
