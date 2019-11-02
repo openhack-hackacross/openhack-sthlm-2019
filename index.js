@@ -18,7 +18,7 @@ app.get('/type/fires', (req, res) =>
 
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, "0.0.0.0", () => console.log(`Example app listening on port ${port}!`))
 
 function fetchData(url) {
 fetch(url) // Call the fetch function passing the url of the API as a parameter
@@ -33,22 +33,8 @@ fetch(url) // Call the fetch function passing the url of the API as a parameter
 }
 
 
-/*
-feed.load('https://api.helsingborg.se/alarm/alarms/feed/', function(err, rss){
-    items = rss.items
-    for(let item of items) {
-        if (filterDocument(item.title)) {
-            jsonItem = createJSONItem(item.title, item.description, "fire", "location");
-            flaggedItems.push(jsonItem);
-        }
-    }
-    console.log(flaggedItems)
-    
-});
-*/
 
-
-function helsingborgrss(){
+function helsingborgRss(){
     feed.load('https://api.helsingborg.se/alarm/alarms/feed/', function(err, rss){
     let items = rss.items
     for(let item of items) {
@@ -65,7 +51,37 @@ function helsingborgrss(){
             flaggedItems.push(jsonItem);
         }
     }
-    console.log(flaggedItems) 
 });
 }
-helsingborgrss();
+ helsingborgRss();
+
+function policeEvent(url) {
+    fetch(url) // Call the fetch function passing the url of the API as a parameter
+    .then((res) => res.json())
+    .then(function(data) {
+        for(let item of data) {
+            if (filter(item.summary)) {
+                let gps = item.location.gps.split(',')
+                jsonItem = {
+                    type: 'fire',
+                    title: item.summary,
+                    lat: parseFloat(gps[0]),
+                    long: parseFloat(gps[1]),
+                    time: item.datetime,
+                    source: 'Polisens händelser',
+                    url: item.url
+                }
+                flaggedItems.push(jsonItem);
+            }
+
+        }
+    })
+    .catch(function() {
+        // This is where you run code if the server returns any errors
+    });
+    }
+    policeEvent('https://polisen.se/api/events?&DateTime='+getTodaysDate())
+
+    function getTodaysDate() {
+        return new Date().toISOString().slice(0,10);
+    }
