@@ -4,10 +4,7 @@ const port = 3000
 const convert = require('xml-js')
 const fetch = require("node-fetch");
 const feed = require('rss-to-json');
-const natural = require("natural");
-const tokenizer = new natural.AggressiveTokenizerSv();
-const filters = ["brinner", "brand", "skogsbrand", "eld", "eldssvåda"];
-let items = {}
+const filter = require('./filterDocument.js');
 let flaggedItems = []
 
 
@@ -50,11 +47,12 @@ feed.load('https://api.helsingborg.se/alarm/alarms/feed/', function(err, rss){
 });
 */
 
+
 function helsingborgrss(){
     feed.load('https://api.helsingborg.se/alarm/alarms/feed/', function(err, rss){
-    items = rss.items
+    let items = rss.items
     for(let item of items) {
-        if (filterDocument(item.title)) {
+        if (filter(item.title)) {
             jsonItem = {
                 type: 'fire',
                 title: item.title,
@@ -71,17 +69,3 @@ function helsingborgrss(){
 });
 }
 helsingborgrss();
-
-function filterDocument(documentDescription) {
-    const documentLowerCase = documentDescription.toLowerCase();
-    const tokens = tokenizer.tokenize(documentDescription);
-    for(let filter of filters) {
-        if (documentLowerCase.includes(filter)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-
-    // https://api.helsingborg.se/alarm/alarms/feed/
