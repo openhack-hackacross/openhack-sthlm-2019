@@ -6,6 +6,7 @@ const fetch = require("node-fetch");
 const feed = require('rss-to-json');
 const filter = require('./filterDocument.js');
 let flaggedItems = []
+const PORT = process.env.PORT
 
 
 app.get('/', (req, res) => res.render('index.ejs'))
@@ -18,7 +19,7 @@ app.get('/type/fires', (req, res) =>
 
 
 
-app.listen(port, "0.0.0.0", () => console.log(`Example app listening on port ${port}!`))
+app.listen(PORT, () => console.log(`Example app listening on port ${port}!`))
 
 function fetchData(url) {
 fetch(url) // Call the fetch function passing the url of the API as a parameter
