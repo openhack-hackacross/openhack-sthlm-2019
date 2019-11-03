@@ -1,5 +1,5 @@
 # Red Cross Crisis Locator: A project for Openhack 2019 by Hack-A-Cross
-This is an entry for the Stockholm Openhack 2019. It is an application for collecting news from specific RSS-feeds and filtering these to map and show news related to certain keywords (fire, accident) in order to assist in emergency administration of volunteers. 
+This is an entry for the Stockholm Openhack 2019. It is an application for collecting news from specific RSS-feeds and filtering these to map and show news related to certain keywords (fire, accident) in order to assist in emergency administration of volunteers. This is the backend repository and you find the frontend [here](https://github.com/mhussien86/HackAcross). 
 
 ## Goal
 The goal is to provide a filtered visualisation of data that can help predict emergency situations for second line help organisations such as the Swedish Red Cross. By combining different data sources, such as news items and wheather conditions, we aim to give a view where administrators can find relevant information to help in assessing if a situation will or has just occured in order to provide faster help. The app is currently localised to Sweden but can be scaled for similar projects elsewhere. 
