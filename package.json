@@ -19,7 +19,7 @@
   "homepage": "https://github.com/openhack-hackacross/openhack-sthlm-2019#readme",
   "dependencies": {
     "ejs": "^2.7.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "natural": "^0.6.3",
     "node-fetch": "^2.6.0",
     "rss-to-json": "^1.0.5",
